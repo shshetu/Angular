@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html ng-app="exampleApp">
+<head>
+    <title>AngularJS Demo</title>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap-theme.css" rel="stylesheet" />
+    <script src="js/angular.js"></script>
+    <script>
+
+        var myApp = angular.module("exampleApp", []);
+
+        myApp.controller("satCtrl", function ($scope, days) {
+            $scope.day = days.satDay;
+        });
+
+        myApp.controller("sunCtrl", function ($scope, days) {
+            $scope.day = days.sunDay;
+        });
+         myApp.controller("monCtrl", function ($scope, days) {
+            $scope.day = days.monDay;
+        });
+         myApp.controller("tuesCtrl", function ($scope, days) {
+            $scope.day = days.tuesDay;
+        });
+         myApp.controller("wedCtrl", function ($scope, days) {
+            $scope.day = days.wedDay;
+        });
+         myApp.controller("thursCtrl", function ($scope, days) {
+            $scope.day = days.thursDay;
+        });
+         myApp.controller("friCtrl", function ($scope, days) {
+            $scope.day = days.friDay;
+        });
+
+        myApp.directive("highlight", function ($filter) {
+
+            var dayFilter = $filter("dayName");
+            
+            return function (scope, element, attrs) {
+                if (dayFilter(scope.day) == attrs["highlight"]) {
+                    element.css("color", "red");
+                }else if (dayFilter(scope.day) == attrs["highlight"]) {
+                    element.css("color", "red");
+                }else if (dayFilter(scope.day) == attrs["highlight"]) {
+                    element.css("color", "red");
+                } else if (dayFilter(scope.day) == attrs["highlight"]) {
+                    element.css("color", "red");
+                } else if (dayFilter(scope.day) == attrs["highlight"]) {
+                    element.css("color", "red");
+                } else if (dayFilter(scope.day) == attrs["highlight"]) {
+                    element.css("color", "red");
+                } 
+            }
+        });
+         
+        myApp.filter("dayName", function () {
+            var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday",
+                            "Thursday", "Friday", "Saturday"];
+            return function (input) {
+                return angular.isNumber(input) ? dayNames[input] : input;
+            };
+        });
+
+        var now = new Date();
+        myApp.value("nowValue", now);
+
+        myApp.service("days", function (nowValue) {
+            this.satDay = nowValue.getDay();
+            this.sunDay = this.satDay + 1;
+            this.monDay = this.satDay + 2;
+            this.tuesDay = this.satDay + 3;
+            this.wedDay = this.satDay + 4;
+            this.thursDay = this.satDay + 5;
+            this.friDay = this.satDay + 6;
+        });
+
+
+    </script>
+</head>
+<body> 
+    <div class="panel">
+        <div class="page-header">
+            <h3>AngularJS App</h3>
+        </div>
+        <h4 ng-controller="satCtrl" highlight="Saturday">
+            Today is {{day || "(unknown)" | dayName}}
+        </h4>
+        <h4 ng-controller="sunCtrl" highlight="Sunday">
+            Today is {{day || "(unknown)" | dayName}}
+        </h4>
+        <h4 ng-controller="monCtrl" highlight="Monday">
+            Today is {{day || "(unknown)" | dayName}}
+        </h4>
+        <h4 ng-controller="tuesCtrl" highlight="Tuesday">
+            Today is {{day || "(unknown)" | dayName}}
+        </h4>
+        <h4 ng-controller="wedCtrl" highlight="Wednesday">
+            Today is {{day || "(unknown)" | dayName}}
+        </h4>
+        <h4 ng-controller="thursCtrl" highlight="Thursday">
+            Today is {{day || "(unknown)" | dayName}}
+        </h4>
+        <h4 ng-controller="friCtrl" highlight="Friday">
+            Today is {{day || "(unknown)" | dayName}}
+        </h4>
+     
+    </div>
+</body>
+</html>
