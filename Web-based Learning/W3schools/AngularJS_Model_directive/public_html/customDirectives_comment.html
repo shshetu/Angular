@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head><title>Custom Directives </title>
+        <link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <script src="js/angular.js" type="text/javascript"></script>
+        <script>
+         angular.module("myApp",[]).directive("w3TestDirective",function(){
+             return{
+                 restrict: "M",
+                 replace: true,
+                 template: "<h1>Made by a directive!</h1>"
+             };
+         });
+        </script>
+    </head>
+    <body ng-app="myApp">
+        <!-- directive: w3-test-directive-->
+         
+    </body>
+</html>
