@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head><title>AnJS Objects </title>
+        <link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <script src="js/angular.js" type="text/javascript"></script>
+        <script>
+            var app = angular.module('myApp', []);
+            app.controller('myCtrl', function ($scope, $http) {
+                $http.get("wrongFileName.html").then(function (response) {
+                    //First function handles success
+                    $scope.content = response.data;
+                }, function (response) {
+                    //Second function handles error
+                    $scope.content = "Something went wrong";
+                }
+                );
+            });
+        </script>
+    </head>
+    <body>
+        <div ng-app="myApp" ng-controller="myCtrl">
+            <h1>{{content}}</h1>
+        </div>
+    </body>
+</html>
